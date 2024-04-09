@@ -1,0 +1,94 @@
+/* 全局list页面按钮样式 */
+.slt {
+    margin: 0 !important;
+    display: flex;
+}
+
+.ad {
+    margin: 0 !important;
+    display: flex;
+}
+
+.pages {
+& /deep/ el-pagination__sizes{
+& /deep/ el-input__inner {
+      height: 22px;
+      line-height: 22px;
+  }
+}
+}
+
+
+.el-button+.el-button {
+    margin:0;
+}
+
+.tables {
+& /deep/ .el-button--success {
+      height: 36px;
+      color: rgba(40, 167, 69, 1);
+      font-size: 10px;
+      border-width: 0px;
+      border-style: solid;
+      border-color: #DCDFE6;
+      border-radius: 0px;
+      background-color: rgba(255, 255, 255, 1);
+  }
+
+& /deep/ .el-button--primary {
+      height: 36px;
+      color: rgba(255, 193, 7, 1);
+      font-size: 10px;
+      border-width: 0px;
+      border-style: solid;
+      border-color: #DCDFE6;
+      border-radius: 0px;
+      background-color: #fff;
+  }
+
+& /deep/ .el-button--danger {
+      height: 36px;
+      color: rgba(220, 53, 69, 1);
+      font-size: 10px;
+      border-width: 0px;
+      border-style: solid;
+      border-color: #DCDFE6;
+      border-radius: 0px;
+      background-color: #fff;
+  }
+
+& /deep/ .el-button {
+      margin: 4px;
+  }
+}
+
+/* 全局add-or-update页面按钮样式 */
+.editor{
+    height: 500px;
+
+& /deep/ .ql-container {
+      height: 310px;
+  }
+}
+.amap-wrapper {
+    width: 100%;
+    height: 500px;
+}
+.search-box {
+    position: absolute;
+}
+.addEdit-block {
+    margin: -10px;
+}
+.detail-form-content {
+    padding: 12px;
+}
+.btn .el-button {
+    padding: 0;
+}
+/*IndexMain.vue页面 list页面样式
+	//背景颜色
+		.el-main
+	//list页面的边框颜色
+		.router-view
+*/

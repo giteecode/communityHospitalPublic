@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.DictionaryDao">
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        a.id as id
+        ,a.dic_code as dicCode
+        ,a.dic_name as dicName
+        ,a.code_index as codeIndex
+        ,a.index_name as indexName
+        ,a.super_id as superId
+        ,a.beizhu as beizhu
+        ,a.create_time as createTime
+    </sql>
+    <select id="selectListView" parameterType="map" resultType="com.entity.view.DictionaryView" >
+        SELECT
+        <include refid="Base_Column_List" />
+
+--         级联表的字段
+
+        FROM dictionary  a
+
+        <where>
+            <if test="params.ids != null">
+                and a.id in
+                <foreach item="item" index="index" collection="params.ids" open="(" separator="," close=")">
+                #{item}
+                </foreach>
+            </if>
+            <if test=" params.dicCode != '' and params.dicCode != null and params.dicCode != 'null' ">
+                and a.dic_code like CONCAT('%',#{params.dicCode},'%')
+            </if>
+            <if test=" params.dicName != '' and params.dicName != null and params.dicName != 'null' ">
+                and a.dic_name like CONCAT('%',#{params.dicName},'%')
+            </if>
+            <if test="params.codeIndexStart != null and params.codeIndexStart != ''">
+                <![CDATA[  and a.code_index >= #{params.codeIndexStart}   ]]>
+            </if>
+            <if test="params.codeIndexEnd != null and params.codeIndexEnd != ''">
+                <![CDATA[  and a.code_index <= #{params.codeIndexEnd}   ]]>
+            </if>
+             <if test="params.codeIndex != null and params.codeIndex != ''">
+                and a.code_index = #{params.codeIndex}
+             </if>
+            <if test=" params.indexName != '' and params.indexName != null and params.indexName != 'null' ">
+                and a.index_name like CONCAT('%',#{params.indexName},'%')
+            </if>
+            <if test="params.superId != null and params.superId != ''">
+                and (
+                    a.super_id = #{params.superId}
+                )
+            </if>
+            <if test=" params.beizhu != '' and params.beizhu != null and params.beizhu != 'null' ">
+                and a.beizhu like CONCAT('%',#{params.beizhu},'%')
+            </if>
+
+        </where>
+
+        order by a.${params.orderBy} desc 
+    </select>
+
+</mapper>
